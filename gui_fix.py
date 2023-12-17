@@ -1,0 +1,254 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
+import subprocess
+import os
+
+# Global variable for result_label
+result_label = None
+
+class FortranCompilerGUI:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Simple Cold Pool Hires GUI Interactive Model - Compiler")
+        # Create a LabelFrame for the title
+        # Create a LabelFrame for the title
+        #title_frame = ttk.LabelFrame(self.root, text="INTERACTIVE MODEL FOR 2-LAYER FLOW OVER AN ISOLATED MOUNTAIN", padding=(10, 5), style="Title.TLabel")
+        #title_frame.grid(row=0, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
+
+        # Add a label for the subtitle
+        #subtitle_label = ttk.Label(title_frame, text="Fortran Code Compilation", font=("Helvetica", 14))
+        #subtitle_label.grid(row=0, column=0, padx=10, pady=5)
+
+      
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        # Button to compile Fortran code
+        compile_button = tk.Button(self.root, text="Compile Fortran Code", width=30, height=15, bg="blue", fg="yellow", command=self.compile_fortran)
+        compile_button.grid(row=0, column=0, pady=10)
+
+    def compile_fortran(self):
+        # Disable compile button
+        compile_button = self.root.children["!button"]
+        compile_button["state"] = "disable"
+
+        makefile_config = """
+FC = gfortran -O2 -fconvert=big-endian -fallow-argument-mismatch
+FCFLAGS = 
+"""
+
+        makefile_config += f"""
+SOURCES=src/DTDM_model.f src/blktri.f
+
+OBJS= $(SOURCES:.f=.o)
+
+dtdm: clean ; 
+\t$(FC) $(FCFLAGS) -o $@ $(SOURCES) 
+
+clean:
+\t/bin/rm -f dtdm src/*.o
+"""
+
+        # Writing makefile configuration to a temporary file
+        with open("temp_makefile", "w") as temp_makefile:
+            temp_makefile.write(makefile_config)
+
+        # Running the makefile
+        try:
+            subprocess.run(["make", "-f", "temp_makefile"])
+            messagebox.showinfo("Compilation Complete", "Fortran code compiled successfully.")
+        except Exception as e:
+            messagebox.showerror("Compilation Error", f"Error compiling Fortran code: {e}")
+        finally:
+            # Removing temporary makefile
+            os.remove("temp_makefile")
+
+        # Enable compile button
+        compile_button["state"] = "normal"
+
+        # Close the main window
+        self.root.destroy()
+
+        # Create and display the second GUI window
+        show_second_gui()
+
+def show_second_gui():
+    global result_label  # Access the global variable
+    # Create the second GUI window
+    app = tk.Tk()
+    app.title("Simple Cold Pool Hires GUI Interactive Model - User Data Entry")
+
+    # Add input fields
+    icz_label = ttk.Label(app, text="ICOOLZONE (masukkan 0/1/2) = ")
+    icz_label.grid(row=0, column=0, padx=10, pady=5, sticky="e")
+    icz_entry = ttk.Entry(app)
+    icz_entry.grid(row=0, column=1, padx=10, pady=5)
+
+    ips_label = ttk.Label(app, text="IPRESSURE (masukkan 0/1) = ")
+    ips_label.grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    ips_entry = ttk.Entry(app)
+    ips_entry.grid(row=1, column=1, padx=10, pady=5)
+
+    ims_label = ttk.Label(app, text="IMOIST (masukkan 0/1) =")
+    ims_label.grid(row=2, column=0, padx=10, pady=5, sticky="e")
+    ims_entry = ttk.Entry(app)
+    ims_entry.grid(row=2, column=1, padx=10, pady=5)
+
+    # Add a button to save to file
+    save_button = ttk.Button(app, text="Save to File", command=lambda: save_to_file(icz_entry, ips_entry, ims_entry))
+    save_button.grid(row=3, column=0, columnspan=2, pady=10)
+
+    # Add a button to run the model
+    run_model_button = ttk.Button(app, text="Run Model", command=run_model)
+    run_model_button.grid(row=4, column=0, columnspan=2, pady=10)
+
+    # Display the result label
+    result_label = ttk.Label(app, text="")
+    result_label.grid(row=5, column=0, columnspan=2, pady=5)
+
+    # Start the second GUI application
+    app.mainloop()
+
+def save_to_file(icz_entry, ips_entry, ims_entry):
+    global result_label  # Access the global variable
+    #user input:
+    icz = icz_entry.get()
+    ips = ips_entry.get()
+    ims = ims_entry.get()
+
+    #create string
+    data = f"""
+ &experiment
+    casename = 'coldpool.hires',
+ /
+ &grid_run
+    nx = 501,
+    nz = 101,
+    dx = 50.,
+    dz = 50.,
+    dt = 0.125,
+    timend = 1800.,
+    plot = 20.,
+ /
+ &framework
+    ipressure = {ips},
+    ianelastic = 0,
+    csnd = 50.,
+    imoist = {ims},
+    fcoef = 0.,
+ /
+ &numerics
+    byteswap = 1,
+    cstar = 30.,
+    dkx = 50.,
+    dkz = 10.,
+    eps = 0.005,
+ /
+ &environ
+    bvpbl = 0.000,
+    pbld = 4000.,
+    bvtropo = 0.00,
+    tropo = 12000.,
+    bvstrat = 0.00,
+    psurf = 965.,
+    usurf = 0.,
+    shear1 = 0.,
+    sdepth1 = 3000.,
+    shear2 = 0.,
+    sdepth2 = 1500.,
+    shear3 = 0.,
+    rhsurf = 80,
+    rhvalue1 = 90,
+    rhheight1 = 1000.,
+    rhvalue2 = 85,
+    rhheight2 = 4000.,
+    rhvalue3 = 25,
+    rhheight3 = 8000.,
+ /
+ &thermal
+    ithermal = 0,
+    delt = 3.,
+    radx = 8000.,
+    radz = 4000.,
+    zcnt = 3000.,
+ /
+ &surface_flux
+    ishflux = 0,
+    tdelt = 12.,
+    icoast = 30,
+    cdh = 7.2e-3,
+    irand = 0,
+ /
+ &streamfunction
+    istrfcn = 0,
+    s_repeat = 0,
+    s_ampl = 40.,
+    s_znaught = 6000.,
+    s_hwavel = 10000.,
+    s_vwavel = 18000.,
+    s_period = 1200.,
+ /
+ &atmos_heat_source
+    ihsrc = 0,
+    h_ampl = 0.075,
+    h_radius_x = 3000.,
+    h_radius_z = 3000.,
+    h_center_z = 3000.,
+    h_freq = 0.005,
+    h_modes = 2,
+ /
+ &rotunno_seabreeze
+    iseabreeze = 0,
+    sb_ampl = 0.000175,
+    sb_x0 = 1000.,
+    sb_z0 = 1000.,
+    sb_period = 1.0,
+    sb_latitude = 60.,
+    sb_linear = 1,
+ /
+ &cooling_zone
+    icoolzone = {icz},
+    cz_ampl = 4.5,
+    cz_rightedge = 0.20,
+    cz_depth = 2000.,
+    cz_width = 4000.,
+    cz_coolrate = 600.,
+ /
+ """
+
+    script_directory = os.path.dirname(__file__)
+
+    # Specify the file path where you want to save the text file
+    file_path = os.path.join(script_directory, "data.txt")
+
+    # Write the user data to a text file
+    with open(file_path, 'w') as file:
+        file.write(data)
+    result_label.config(text=f"User data has been written to {file_path}.")
+
+def run_model():
+    global result_label  # Access the global variable
+    # Get the directory of the current script
+    script_directory = os.path.dirname(__file__)
+
+    # Assuming your model executable is named 'dtdm'
+    model_executable = os.path.join(script_directory, './dtdm')
+
+    # Assuming the data file is named 'data.txt'
+    data_file = os.path.join(script_directory, 'data.txt')
+
+    # Run the model with the created configuration file
+    model_command = f"{model_executable} < {data_file}"
+
+    # Run the model using subprocess
+    try:
+        subprocess.run(model_command, shell=True, check=True)
+        result_label.config(text=f"Model has been successfully run using {data_file}.")
+    except subprocess.CalledProcessError as e:
+        result_label.config(text=f"Error running the model: {e}")
+
+# Create the main application window
+root = tk.Tk()
+app = FortranCompilerGUI(root)
+root.mainloop()
