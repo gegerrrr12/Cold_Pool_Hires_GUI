@@ -302,9 +302,8 @@ def run_model(plot_option):
         ctl_file_path = 'coldpool.hires.ctl'
         nc_file_path = 'coldpool.hires.nc'
 
-        grads_ctl = xgrads.CtlDescriptor.open(ctl_file_path)
-        ds = grads_ctl.to_xarray()
-        ds.to_netcdf(nc_file_path)
+        grads_ctl = xgrads.open_mfdataset(ctl_file_path)
+        grads_ctl.to_netcdf(nc_file_path)
 
         print(f"File {ctl_file_path} berhasil dikonversi menjadi {nc_file_path}.")
 
