@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the Cold Pool Hires GUI Interactive Model developed by Meteorologi Skala Meso for the 2023/2024 season. This model provides a user-friendly graphical interface for exploring and understanding cold pool phenomena in meteorology.
+Welcome to the Cold Pool Hires GUI Interactive Model developed by Mahasiswa Mateorologi Skala Meso 2023/2024. This model provides a user-friendly graphical interface for exploring and understanding cold pool phenomena in meteorology.
 
 ## Features
 
@@ -10,15 +10,13 @@ Welcome to the Cold Pool Hires GUI Interactive Model developed by Meteorologi Sk
 
 - **High-Resolution Simulation**: Utilizing state-of-the-art high-resolution simulation techniques to provide detailed and accurate representations of cold pool dynamics.
 
-- **Meteorological Scale**: Tailored for mesoscale meteorology applications, offering insights into cold pool behavior at a localized level.
-
 ## Getting Started
 
 ### Prerequisites
 
 Ensure that you have the following software installed:
 
-- [Python](https://www.python.org/) (version X.X or higher)
+- [Python](https://www.python.org/) (version 3.10 or higher)
 - [Required Python Libraries](requirements.txt) - Install using `pip install -r requirements.txt`
 
 ### Installation
@@ -26,8 +24,8 @@ Ensure that you have the following software installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/cold-pool-hires.git
-    cd cold-pool-hires
+    git clone https://github.com/putuwistika/Cold_Pool_Hires_GUI.git
+    cd Cold_Pool_Hires_GUI
     ```
 
 2. Install dependencies:
