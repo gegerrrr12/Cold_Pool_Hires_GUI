@@ -1,5 +1,5 @@
 ### I Putu Ferry Wistika (12820001)
-- Model Building
+- Task 1
 - Task 2
 - ...
 
@@ -29,11 +29,11 @@
 - ...
 
 ### Geraldin Andira C.P (12820032)
-- Task 1
-- Task 2
-- ...
+- Membuat PPT
+- 
+- 
 
 ### Alecio Yusran Rizqullah (12820033)
-- Windows Tester
-- GUI Customization
+- Task 1
+- Task 2
 - ...
