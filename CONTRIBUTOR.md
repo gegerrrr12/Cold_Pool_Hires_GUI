@@ -1,10 +1,10 @@
 ### I Putu Ferry Wistika (12820001)
 - Model Building
-- Task 2
+- 
 - ...
 
 ### Tesalonika Angela T.M (12820012)
-- Task 1
+- Model Building
 - Task 2
 - ...
 
@@ -29,8 +29,8 @@
 - ...
 
 ### Geraldin Andira C.P (12820032)
-- Task 1
-- Task 2
+- Membuat PPT
+- 
 - ...
 
 ### Alecio Yusran Rizqullah (12820033)
