@@ -17,7 +17,7 @@ Welcome to the Cold Pool Hires GUI Interactive Model developed by Mahasiswa Mate
 Ensure that you have the following software installed:
 
 - [Python](https://www.python.org/) (version 3.10 or higher)
-- [Required Python Libraries For Mac & Linux ](requirements_for_mac&linux.txt) - Install using `pip install -r requirements_for_mac&linux.txt`
+- [Required Python Libraries For Mac & Linux ](requirements_for_mac_linux.txt) - Install using `pip install -r requirements_for_mac&linux.txt`
 - [Required Python Libraries For Windows ](requirements_for_windows.txt) - Install using `pip install -r requirements_for_windows.txt`
 
 ### Installation
@@ -32,7 +32,7 @@ Ensure that you have the following software installed:
 2. Install dependencies for Linux & Mac:
 
     ```bash
-    pip install -r requirements_for_mac&linux.txt
+    pip install -r requirements_for_mac_linux.txt
     ```
 
 3. Install dependencies for Windows:
