@@ -150,7 +150,7 @@ def show_second_gui():
     result_label.grid(row=8, column=0, columnspan=2, pady=5)
 
     quit_button = ttk.Button(app, text="Quit", command=app.quit)
-    quit_button.grid(row=7, column=0, columnspan=4, pady=10)
+    quit_button.grid(row=7, column=1, columnspan=4, pady=10)
 
     # Start the GUI application
     app.mainloop()
