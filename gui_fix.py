@@ -141,6 +141,10 @@ def show_second_gui():
     run_model_button = ttk.Button(app, text="Run Model", command=run_model)
     run_model_button.grid(row=5, column=2, columnspan=2, pady=10)
 
+    # Add a button to view info
+    info_button = ttk.Button(app, text="Show Info", command=info)
+    info_button.grid(row=6, column=2, columnspan=2, pady=10)
+
     # Display the result label
     result_label = ttk.Label(app, text="")
     result_label.grid(row=5, column=0, columnspan=2, pady=5)
@@ -324,6 +328,55 @@ def show_plot():
 
     # Show the plot
     plt.show()
+
+def info():
+    about_msg="""
+------------------------------------------------------------------------------
+                   INTRODUCTION
+------------------------------------------------------------------------------
+The grid_run namelist specifies model dimensions, integration length, and plotting output interval
+
+ nx - number of horizontal grid points - max NXM in storage.txt default is 101
+ nz - number of vertical grid points - max NZM in storage.txt default is 84
+ dx - horizontal grid spacing (m; default = 1000.)
+ dz - vertical grid spacing (m; default = 250.)
+ dt - time step (s; default = 1.0)
+ timend - integration stop time (s; default = 7200.)
+ plot - plotting interval (s; default = 300.)
+   * if interval < 60 sec, GrADS will report time incorrectly
+
+===============================================================================
+Framework namelist specifies whether the model is compressible or anelastic
+
+ ipressure - output pressure decompositions if 1 (default is 0)
+    * can make model integrations much longer in some cases
+ imoist - turns on moisture if 1 (default is 0)
+
+===============================================================================
+
+The cooling_zone namelist implements a lower tropospheric cooling source following Fovell and Tan (2000) or an impulsive block of cold air of specified dimensions
+
+ icoolzone (1 = Fovell-Tan storm-adaptive cooling zone,         2 = impulsive cold block; default is 0)
+-------------------------------------------------------------------------------
+    """
+    top = tk.Toplevel(width=200, height=500)
+    top.title("Mountain Lee Wave Model Help/Info")
+    
+    txt = tk.Text(top, borderwidth=3, relief=tk.RIDGE)
+    txt.config(font=("consolas", 12), wrap='word')
+
+    scrollbar = tk.Scrollbar(top, command=txt.yview)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+    
+    txt.insert(tk.END, about_msg)
+    txt.config(state=tk.DISABLED)
+    txt.pack()
+    txt['yscrollcommand'] = scrollbar.set
+    
+    button = tk.Button(top, text="Close", command=top.destroy)
+    button.pack()
+    
+    
     
 # Create the main application window
 root = tk.Tk()
