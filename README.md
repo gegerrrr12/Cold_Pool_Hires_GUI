@@ -48,13 +48,6 @@ Ensure that you have the following software installed:
 
 If you would like to contribute to the development of this project, please follow our [Contribution Guidelines](CONTRIBUTING.md).
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-For questions or support, please contact [Meteorologi Skala Meso](mailto:meso.skala@example.com).
 
 ---
 
