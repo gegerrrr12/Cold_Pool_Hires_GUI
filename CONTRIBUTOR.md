@@ -1,15 +1,15 @@
 ### I Putu Ferry Wistika (12820001)
 - Model Building
-- Task 2
+- Mac Tester
 - ...
 
 ### Tesalonika Angela T.M (12820012)
-- Task 1
-- Task 2
+- Model Building
+- Mac Tester
 - ...
 
 ### Hania Safira Sirait (12820016)
-- Task 1
+- task 1
 - Task 2
 - ...
 
