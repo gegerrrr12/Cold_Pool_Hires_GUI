@@ -1,12 +1,12 @@
 ### I Putu Ferry Wistika (12820001)
-- Model & GUI Building
+- Model Building
 - Mac Tester
-- ...
+- Brain Storming Idea
 
 ### Tesalonika Angela T.M (12820012)
-- Model & GUI Building
+- Model Building
 - Mac Tester
-- ...
+- Brain Storming Idea
 
 ### Hania Safira Sirait (12820016)
 - task 1
@@ -29,8 +29,8 @@
 - ...
 
 ### Geraldin Andira C.P (12820032)
-- Task 1
-- Task 2
+- Mmebuat PPT
+- Brain Storming Idea
 - ...
 
 ### Alecio Yusran Rizqullah (12820033)
