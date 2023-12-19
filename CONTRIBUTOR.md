@@ -1,10 +1,10 @@
 ### I Putu Ferry Wistika (12820001)
-- Model Building
+- Model & GUI Building
 - Mac Tester
 - ...
 
 ### Tesalonika Angela T.M (12820012)
-- Model Building
+- Model & GUI Building
 - Mac Tester
 - ...
 
