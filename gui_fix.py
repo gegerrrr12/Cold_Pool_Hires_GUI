@@ -272,7 +272,7 @@ def save_to_file(nx_entry,nz_entry,dx_entry,dz_entry,dt_entry,tim_entry,plot_ent
         file.write(data)
     result_label.config(text=f"User data has been written to {file_path}.")
 
-def run_model():
+def run_model(plot_option):
     global result_label  # Access the global variable
     # Get the directory of the current script
     script_directory = os.path.dirname(__file__)
