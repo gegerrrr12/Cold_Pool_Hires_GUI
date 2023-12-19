@@ -58,7 +58,7 @@ Ensure that you have the following software installed:
 
 
 ## Contributor
-[](CONTRIBUTOR.txt)
+[Contributor List](CONTRIBUTOR.txt)
 
 
 
