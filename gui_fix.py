@@ -80,39 +80,81 @@ def show_second_gui():
     app.title("Simple Cold Pool Hires GUI Interactive Model - User Data Entry")
 
     # Add input fields
-    icz_label = ttk.Label(app, text="ICOOLZONE (masukkan 0/1/2) = ")
-    icz_label.grid(row=0, column=0, padx=10, pady=5, sticky="e")
+    nx_label = ttk.Label(app, text="nx = ")
+    nx_label.grid(row=0, column=0, padx=10, pady=5, sticky="e")
+    nx_entry = ttk.Entry(app)
+    nx_entry.grid(row=0, column=1, padx=10, pady=5)
+
+    nz_label = ttk.Label(app, text="nz = ")
+    nz_label.grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    nz_entry = ttk.Entry(app)
+    nz_entry.grid(row=1, column=1, padx=10, pady=5)
+
+    dx_label = ttk.Label(app, text="dx =")
+    dx_label.grid(row=2, column=0, padx=10, pady=5, sticky="e")
+    dx_entry = ttk.Entry(app)
+    dx_entry.grid(row=2, column=1, padx=10, pady=5)
+
+    dz_label = ttk.Label(app, text="dz = ")
+    dz_label.grid(row=3, column=0, padx=10, pady=5, sticky="e")
+    dz_entry = ttk.Entry(app)
+    dz_entry.grid(row=3, column=1, padx=10, pady=5)
+
+    dt_label = ttk.Label(app, text="dt = ")
+    dt_label.grid(row=4, column=0, padx=10, pady=5, sticky="e")
+    dt_entry = ttk.Entry(app)
+    dt_entry.grid(row=4, column=1, padx=10, pady=5)
+
+    tim_label = ttk.Label(app, text="timend =")
+    tim_label.grid(row=0, column=2, padx=10, pady=5, sticky="e")
+    tim_entry = ttk.Entry(app)
+    tim_entry.grid(row=0, column=3, padx=10, pady=5)
+
+    plot_label = ttk.Label(app, text="plot =")
+    plot_label.grid(row=1, column=2, padx=10, pady=5, sticky="e")
+    plot_entry = ttk.Entry(app)
+    plot_entry.grid(row=1, column=3, padx=10, pady=5)
+
+    icz_label = ttk.Label(app, text="ICOOLZONE (input 0/1/2) = ")
+    icz_label.grid(row=2, column=2, padx=10, pady=5, sticky="e")
     icz_entry = ttk.Entry(app)
-    icz_entry.grid(row=0, column=1, padx=10, pady=5)
+    icz_entry.grid(row=2, column=3, padx=10, pady=5)
 
-    ips_label = ttk.Label(app, text="IPRESSURE (masukkan 0/1) = ")
-    ips_label.grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    ips_label = ttk.Label(app, text="IPRESSURE (input 0/1) = ")
+    ips_label.grid(row=3, column=2, padx=10, pady=5, sticky="e")
     ips_entry = ttk.Entry(app)
-    ips_entry.grid(row=1, column=1, padx=10, pady=5)
+    ips_entry.grid(row=3, column=3, padx=10, pady=5)
 
-    ims_label = ttk.Label(app, text="IMOIST (masukkan 0/1) =")
-    ims_label.grid(row=2, column=0, padx=10, pady=5, sticky="e")
+    ims_label = ttk.Label(app, text="IMOIST (input 0/1) =")
+    ims_label.grid(row=4, column=2, padx=10, pady=5, sticky="e")
     ims_entry = ttk.Entry(app)
-    ims_entry.grid(row=2, column=1, padx=10, pady=5)
+    ims_entry.grid(row=4, column=3, padx=10, pady=5)
 
     # Add a button to save to file
-    save_button = ttk.Button(app, text="Save to File", command=lambda: save_to_file(icz_entry, ips_entry, ims_entry))
-    save_button.grid(row=3, column=0, columnspan=2, pady=10)
+    save_button = ttk.Button(app, text="Save to File", command=lambda:save_to_file(nx_entry,nz_entry,dx_entry,dz_entry,dt_entry,tim_entry,plot_entry,icz_entry,ips_entry,ims_entry))
+    save_button.grid(row=5, column=1, columnspan=2, pady=10)
 
     # Add a button to run the model
     run_model_button = ttk.Button(app, text="Run Model", command=run_model)
-    run_model_button.grid(row=4, column=0, columnspan=2, pady=10)
+    run_model_button.grid(row=5, column=2, columnspan=2, pady=10)
 
     # Display the result label
     result_label = ttk.Label(app, text="")
     result_label.grid(row=5, column=0, columnspan=2, pady=5)
 
-    # Start the second GUI application
+    # Start the GUI application
     app.mainloop()
 
-def save_to_file(icz_entry, ips_entry, ims_entry):
+def save_to_file(nx_entry,nz_entry,dx_entry,dz_entry,dt_entry,tim_entry,plot_entry,icz_entry,ips_entry,ims_entry):
     global result_label  # Access the global variable
     #user input:
+    nx = nx_entry.get()
+    nz = nz_entry.get()
+    dx = dx_entry.get()
+    dz = dz_entry.get()
+    dt = dt_entry.get()
+    tim = tim_entry.get()
+    plot = plot_entry.get()
     icz = icz_entry.get()
     ips = ips_entry.get()
     ims = ims_entry.get()
@@ -123,13 +165,13 @@ def save_to_file(icz_entry, ips_entry, ims_entry):
     casename = 'coldpool.hires',
  /
  &grid_run
-    nx = 501,
-    nz = 101,
-    dx = 50.,
-    dz = 50.,
-    dt = 0.125,
-    timend = 1800.,
-    plot = 20.,
+    nx = {nx},
+    nz = {nz},
+    dx = {dz}.,
+    dz = {dz}.,
+    dt = {dt},
+    timend = {tim}.,
+    plot = {plot}.,
  /
  &framework
     ipressure = {ips},
@@ -241,12 +283,18 @@ def run_model():
     # Run the model with the created configuration file
     model_command = f"{model_executable} < {data_file}"
 
-    # Run the model using subprocess
+    # Menjalankan model menggunakan subprocess
     try:
         subprocess.run(model_command, shell=True, check=True)
         result_label.config(text=f"Model has been successfully run using {data_file}.")
+
+        # Menjalankan perintah cdo setelah model selesai dijalankan
+        cdo_command = f"cdo -f nc4 -z zip_2 import_binary coldpool.hires.ctl coldpool.hires.nc"
+        subprocess.run(cdo_command, shell=True, check=True)
+        result_label.config(text=f"cdo command has been successfully executed.")
     except subprocess.CalledProcessError as e:
-        result_label.config(text=f"Error running the model: {e}")
+        result_label.config(text=f"Error running the model or cdo command: {e}")
+
 
 # Create the main application window
 root = tk.Tk()
