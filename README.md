@@ -42,7 +42,7 @@ Ensure that you have the following software installed:
     python cold_pool_gui.py
     ```
 
-2. Open your web browser and navigate to `http://localhost:8080` to access the interactive GUI.
+
 
 ## Contributing
 
