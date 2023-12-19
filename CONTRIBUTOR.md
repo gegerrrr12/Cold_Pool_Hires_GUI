@@ -30,7 +30,7 @@
 
 ### Geraldin Andira C.P (12820032)
 - Task 1
-- Task 2
+- Task 2bkgkjghjgj
 - ...
 
 ### Alecio Yusran Rizqullah (12820033)
