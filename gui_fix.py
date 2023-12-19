@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import subprocess
 import os
+import xarray as xr
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Global variable for result_label
 result_label = None
@@ -295,7 +298,33 @@ def run_model():
     except subprocess.CalledProcessError as e:
         result_label.config(text=f"Error running the model or cdo command: {e}")
 
+    if plot_option:
+        show_plot()
 
+def show_plot():
+    dFil = "coldpool.hires.nc"
+    fFil = os.path.join(dFil)
+
+    ds = xr.open_dataset(fFil)
+    cds = ds["thp"][-1, :, 0, :].squeeze()
+    X, Y = np.meshgrid(cds["lon"].values, cds["lev"].values)
+    z = cds.values
+
+    # Create a contour plot using Matplotlib
+    plt.figure(figsize=(8, 6))
+    contour_plot = plt.contourf(X, Y, z, levels=20, cmap='viridis')
+
+    # Add colorbar
+    cbar = plt.colorbar(contour_plot, label="Temperature")
+
+    # Set labels and title
+    plt.xlabel("Longitude")
+    plt.ylabel("Level")
+    plt.title("Contour Plot of Temperature")
+
+    # Show the plot
+    plt.show()
+    
 # Create the main application window
 root = tk.Tk()
 app = FortranCompilerGUI(root)
