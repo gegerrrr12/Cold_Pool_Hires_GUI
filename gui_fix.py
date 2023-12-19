@@ -147,7 +147,7 @@ def show_second_gui():
 
     # Display the result label
     result_label = ttk.Label(app, text="")
-    result_label.grid(row=5, column=0, columnspan=2, pady=5)
+    result_label.grid(row=6, column=0, columnspan=2, pady=5)
 
     # Start the GUI application
     app.mainloop()
