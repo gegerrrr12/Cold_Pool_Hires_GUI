@@ -139,7 +139,7 @@ def show_second_gui():
 
     # Add a button to run the model
     run_model_button = ttk.Button(app, text="Run Model", command=lambda:run_model(True))
-    run_model_button.grid(row=7, column=2, columnspan=4, pady=10)
+    run_model_button.grid(row=7, column=1, columnspan=4, pady=10)
 
     # Add a button to view info
     info_button = ttk.Button(app, text="Show Info", command=info)
