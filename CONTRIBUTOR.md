@@ -1,5 +1,3 @@
-# contributor.md
-
 ### I Putu Ferry Wistika (12820001)
 - Task 1
 - Task 2
