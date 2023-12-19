@@ -1,5 +1,5 @@
 ### I Putu Ferry Wistika (12820001)
-- Task 1
+- Model Building
 - Task 2
 - ...
 
@@ -34,6 +34,6 @@
 - ...
 
 ### Alecio Yusran Rizqullah (12820033)
-- Task 1
-- Task 2
+- Windows Tester
+- GUI Customization
 - ...
